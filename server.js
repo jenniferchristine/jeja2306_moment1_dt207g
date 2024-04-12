@@ -12,6 +12,16 @@ app.get("/", (req, res) => { // ROUTE
 
 // Lägg till kurser i formulär | kurskod, kursnamn, kursplan, kursprogression |
 app.get("/addcourse", (req, res) => {
+    /*const courseList = [
+        {
+            id:
+            coursecode:
+            coursename:
+            syllabus: 
+            progression:
+
+        }
+    ]*/
     res.render("addcourse")
 });
 
