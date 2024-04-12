@@ -25,6 +25,8 @@ app.get("/addcourse", (req, res) => {
     res.render("addcourse")
 });
 
+//app.post("/")
+
 // Beskrivning av sida | syfte, databas, slutsats |
 app.get("/about", (req, res) => {
     res.render("about") 
