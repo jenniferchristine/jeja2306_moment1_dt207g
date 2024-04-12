@@ -1,0 +1,43 @@
+const mysql = require("mysql");
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "dt207g-1",
+    password: "database123", 
+    database: "dt207g-1"
+});
+
+connection.connect((err) => {
+    if (err) {
+        console.error("Connection failed: " + err);
+        return;
+    }
+    console.log("Connected to MySql");
+});
+
+connection.query(`
+    INSERT INTO courses (coursename, coursecode, syllabus, progression)
+    VALUES 
+    ('Webbutveckling 1', 'DT057G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT057G/', 'A'),
+    ('Introduktion till programmering i JavaScript', 'DT084G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT084G/', 'A'),
+    ('Grafisk teknik för webb', 'DT2004G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT200G/', 'A'),
+    ('Webbanvändbarhet', 'DT068G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT068G/', 'B'),
+    ('Databaser', 'DT003G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT003G/', 'A'),
+    ('Frontend-baserad webbutveckling', 'DT211G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT211G/', 'B'),
+    ('Backend-baserad webbutveckling', 'DT207G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT207G/', 'B'),
+    ('Programmering i TypeScript', 'DT208G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT208G/', 'B'),
+    ('Projektledning', 'IK060G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/IK060G/', 'A'),
+    ('Programmering i C#.NET', 'DT071G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT071G/', 'A'),
+    ('Fullstack-utveckling med ramverk', 'DT193G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT193G/', 'B'),
+    ('Webbutveckling för WordPress', 'DT209G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT209G/', 'B'),
+    ('Webbutveckling med .NET', 'DT191G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT191G/', 'B'),
+    ('Fördjupad frontend-utveckling', 'DT210G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT210G/', 'B'),
+    ('Självständigt arbete', 'DT140G', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT140G/', 'B')
+`, 
+(err, results) => {
+    if (err) {
+        console.error('Error inserting data into courses table: ', err);
+        return;
+    }
+    console.log('Data inserted successfully ' + results);
+});
