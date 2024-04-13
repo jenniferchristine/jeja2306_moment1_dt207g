@@ -29,7 +29,7 @@
                     <h3><a href="<%= course.syllabus %>" title="Klicka här för att komma till kursplanen" target="_blank"><%= course.coursename %></a></h3>
                     <p>Kurskod: <%= course.coursecode %></p> <!-- variabeln course för att hämta hem kursinfo -->
                     <p>Progression: <%= course.progression %></p>
-                    <a href="/delete/<%= course.id %>">Radera</a>
+                    <div class="delete"><a href="/delete/<%= course.id %>">Radera</a></div>
                 </div>
             <% }); %>
         </form>

@@ -107,7 +107,10 @@ form {
 #indexform > *:nth-child(odd) { background-color: #727272; }
 #indexform > div { width: 100%; padding: 1em 0 2em 3em; box-sizing: border-box;}
 
-#indexform > div > button { 
+.delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30px; 
     width: 100px;
     max-width: 100%;
@@ -121,6 +124,7 @@ form {
     transition: 0.2s;
 
     &:hover { background-color: #e0594d; cursor: pointer; }
+    a { text-decoration: none; }
 }
 
 footer {
@@ -147,7 +151,7 @@ footer {
     #pagetwoform > label { align-self: flex-start; margin-left: 12px; }
     #indexform > div { padding: 0 1em 1em 1em; }
     form > input { width: 90%; }
-    #indexform > div > button { width: 100%; }
+    .delete { width: 100%; }
     #submitbtn { width: 94%!important; }
     #textcontainer { padding: 0 1em 2em 1em!important;}
 }
