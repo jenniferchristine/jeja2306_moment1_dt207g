@@ -1,19 +1,33 @@
-const mysql = require("mysql");
+const { Client } = require("pg");
+require("dotenv").config();
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "dt207g-1",
-    password: "database123", 
-    database: "dt207g-1"
-});
-
-connection.connect((err) => {
-    if (err) {
-        console.error("Connection failed: " + err);
-        return;
+// Anslut
+const client = new Client({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    ssl: {
+        rejectUnauthorized: false
     }
-    console.log("Connected to MySql");
 });
+
+client.connect((err) => {
+    if (err) console.log("Fel vid anslutning..." + err);
+    else console.log("Ansluten till databasen...");
+});
+
+client.query(`
+    DROP TABLE IF EXISTS courses;
+    CREATE TABLE courses(
+        id          SERIAL PRIMARY KEY,
+        coursecode  VARCHAR(50) NOT NULL,
+        coursename  VARCHAR(255) NOT NULL,
+        syllabus    VARCHAR(255) NOT NULL,
+        progression CHAR(1) NOT NULL
+    )
+`);
 
 /* 
 

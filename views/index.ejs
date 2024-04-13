@@ -29,7 +29,7 @@
                     <h3><a href="<%= course.syllabus %>" title="Klicka här för att komma till kursplanen" target="_blank"><%= course.coursename %></a></h3>
                     <p>Kurskod: <%= course.coursecode %></p> <!-- variabeln course för att hämta hem kursinfo -->
                     <p>Progression: <%= course.progression %></p>
-                    <button type="submit" formaction="/deletecourse" formmethod="post" name="courseId" value="<%= course.id %>">Radera</button> <!-- post-förfrågan för formulärdata att den ska raderas -->
+                    <a href="/delete/<%= course.id %>">Radera</a>
                 </div>
             <% }); %>
         </form>
