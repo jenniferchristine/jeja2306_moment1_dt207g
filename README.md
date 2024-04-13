@@ -15,4 +15,4 @@
 # Server-baserad webbutveckling
 
 >### Laboration i moment 1:
->I denna uppgift har jag skapat en webbapplikation som gör det möjligt för besökare att lagra, visa och radera kurser de har läst. Datan har lagrats i MySQL och jag har arbetat med programmen Node.js och Express för att skapa servern och ansluta till relationsdatabasen. 
+>I denna uppgift har jag skapat en webbapplikation som gör det möjligt för besökare att lagra, visa och radera kurser de har läst. Datan har lagrats i PostgreSQL och jag har arbetat med programmen Node.js och Express för att skapa servern och ansluta till relationsdatabasen för att sedan publicera via Render. 
