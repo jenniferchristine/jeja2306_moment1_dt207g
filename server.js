@@ -35,13 +35,27 @@ app.get("/", (req, res) => { // route för att hämta data till index
     });
 });
 
+app.post("/deletecourse", (req, res) => { // hantera post-förfrågningarna
+    const courseId = req.body.courseId; // hämta kursens id från formuläret
+    const sql = "DELETE FROM courses WHERE id = ?"; // fråga för att radera
+  
+    connection.query(sql, [courseId], (err, result) => { // utför frågan
+      if (err) {
+        console.error("Error deleting course: ", err);
+        return;
+      }
+      console.log("Course deleted");
+      res.redirect("/"); // omdirigera till startsidan
+    });
+});
+
 
 app.get("/addcourse", (req, res) => { // route för addcourse-sidan
     res.render("addcourse");
 });
 
 
-app.post("/addcourse", (req, res) => { // hantera post-förfrågningar
+app.post("/addcourse", (req, res) => { // hantera post-förfrågningarna
     const coursename = req.body.coursename;
     const coursecode = req.body.coursecode;
     const syllabus = req.body.syllabus;
@@ -53,10 +67,9 @@ app.post("/addcourse", (req, res) => { // hantera post-förfrågningar
     connection.query(sql, values, (err, result) => { // utför sql-frågan
       if (err) {
         console.error("Error inserting data: ", err);
-        res.status(500).send("Error inserting data into database");
         return;
       }
-      console.log("Kurs tillagd");
+      console.log("Course added");
       res.redirect("/"); // omdirigera till startsidan
     });
   });

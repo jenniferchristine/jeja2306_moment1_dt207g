@@ -26,12 +26,13 @@
         <form id="indexform" method="post">
             <% courses.forEach(course => { %>
                 <div>
-                <h3><a href="<%= course.syllabus %>" target="_blank"><%= course.coursename %></a></h3>
-                <p>Kurskod: <%= course.coursecode %></p>
-                <p>Progression: <%= course.progression %></p>
-            </div>
+                    <h3><a href="<%= course.syllabus %>" target="_blank"><%= course.coursename %></a></h3>
+                    <p>Kurskod: <%= course.coursecode %></p>
+                    <p>Progression: <%= course.progression %></p>
+                    <button type="submit" formaction="/deletecourse" formmethod="post" name="courseId" value="<%= course.id %>">Radera</button>
+                </div>
             <% }); %>
-            </form>
+        </form>
     </main>
 
     <footer>
