@@ -1,5 +1,5 @@
 <div align="center" style="background-color: #518b99; padding: 2.5em;">
-<img src="/public/images/logo_jeja.svg">
+<img src="public/images/logo_jeja.svg">
 <br>
 
 ### Jennifer Jakobsson

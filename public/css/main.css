@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
 
 body {
     background-color: #333;
@@ -7,6 +7,7 @@ body {
     font-family: 'Poppins';
 
     p { font-family: 'Inter'; }
+    h1 { margin-top: 1.5em;}
 }
 
 header {
@@ -16,11 +17,16 @@ header {
     flex-direction: column;
     margin: 0 auto;
 
-    img { width: 150px; padding: 3em; }
-    nav a { color: white; text-decoration: none; }
+    img { width: 150px; padding: 3em; cursor: pointer; }
+    nav a { color: rgb(255, 255, 255); text-decoration: none; }
     nav ul li:last-child { margin-right: 0; }
-    #position { border-bottom: 3px solid white; }
-    nav ul li { margin-right: 10px; color: white; }
+    nav ul li { margin-right: 30px; color: white; }
+
+    #position { 
+        background-color: #505050;
+        padding: 0.5em;
+        border-radius: 3px;
+    }
 
     nav ul {
         list-style-type: none;
@@ -28,7 +34,7 @@ header {
         margin: 0;
         justify-content: center;
         display: flex;
-        width: 300px;
+        width: 450px;
     }
 }
 
@@ -41,7 +47,7 @@ main {
     text-align: center;
     border: 1px solid rgb(151, 151, 151);
     width: 800px;
-    border-radius: 0.5em;
+    border-radius: 0.2em;
 }
 
 form {
@@ -56,24 +62,27 @@ form {
     input {
         width: 100%;
         height: 40px;
-        border-radius: 0.2em;
+        border-radius: 0.1em;
         border: none;
     }
 
     #submitbtn {
-        width: 300px;
-        border-radius: 0.5em;
-        border: none;
-        margin: 1.5em auto 0 auto;
-        transition: 0.2s;
-        background-color: #c5c5c5;
+        width: 200px;
+        margin: 2em auto 0 auto;
+        border: none; 
+        background-color: #7aad3f;
         font-family: 'Inter';
+        border-radius: 0;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: white;
         font-size: 15px;
+        box-shadow: 0 5px 5px 0 rgba(0,0,0,0.24);
+        transition: 0.2s;
 
         &:hover {
-            box-shadow: 0 0 20px 0 rgba(0,0,0,0.24);
+            background-color: #8cbd54;
             cursor: pointer;
-            transform: scale(1.02);
         }
     }
 }
@@ -82,11 +91,28 @@ form {
     a { color: white; }
     width: 100%;
     letter-spacing: 0.5px;
-    margin: 3em;
 }
 
 #indexform > *:nth-child(odd) { background-color: #727272; }
 #indexform > div { width: 100%; padding: 1em 0 2em 3em; box-sizing: border-box;}
+
+#indexform > div > button { 
+    height: 30px; 
+    width: 100px; 
+    font-family: 'Inter';
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: none;
+    background-color: #d34638;
+    color: white;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24);
+    transition: 0.2s;
+
+    &:hover {
+        background-color: #e0594d;
+        cursor: pointer;
+    }
+}
 
 footer {
     display: flex;
