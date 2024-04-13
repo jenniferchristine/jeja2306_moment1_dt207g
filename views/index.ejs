@@ -23,13 +23,13 @@
 
     <main>
         <h1>Lagrade kurser</h1>
-        <form id="indexform" method="post">
-            <% courses.forEach(course => { %>
+        <form id="indexform" method="post"> <!-- skickar som HTTP POST-förfrågan -->
+            <% courses.forEach(course => { %> <!-- loopar igenom kurslistan och genererar kod för varje kurs -->
                 <div>
                     <h3><a href="<%= course.syllabus %>" title="Klicka här för att komma till kursplanen" target="_blank"><%= course.coursename %></a></h3>
-                    <p>Kurskod: <%= course.coursecode %></p>
+                    <p>Kurskod: <%= course.coursecode %></p> <!-- variabeln course för att hämta hem kursinfo -->
                     <p>Progression: <%= course.progression %></p>
-                    <button type="submit" formaction="/deletecourse" formmethod="post" name="courseId" value="<%= course.id %>">Radera</button>
+                    <button type="submit" formaction="/deletecourse" formmethod="post" name="courseId" value="<%= course.id %>">Radera</button> <!-- post-förfrågan för formulärdata att den ska raderas -->
                 </div>
             <% }); %>
         </form>
