@@ -78,6 +78,16 @@ form {
     }
 }
 
+#indexform {
+    a { color: white; }
+    width: 100%;
+    letter-spacing: 0.5px;
+    margin: 3em;
+}
+
+#indexform > *:nth-child(odd) { background-color: #727272; }
+#indexform > div { width: 100%; padding: 1em 0 2em 3em; box-sizing: border-box;}
+
 footer {
     display: flex;
     justify-content: center;

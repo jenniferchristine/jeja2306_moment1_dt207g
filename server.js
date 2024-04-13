@@ -3,32 +3,20 @@ const app = express();
 const port = 3000;
 
 app.set("view engine", "ejs");
-app.use(express.static("public")); // Statiska filer
+app.use(express.static("public"));
 
-// Visar kurser | kurskod, kursnamn, kursplan, kursprogression, ta bort kurs |
-app.get("/", (req, res) => { // ROUTE
-    res.render("index") 
-});
 
-// Lägg till kurser i formulär | kurskod, kursnamn, kursplan, kursprogression |
-app.get("/addcourse", (req, res) => {
-    /*const courseList = [
-        {
-            id:
-            coursecode:
-            coursename:
-            syllabus: 
-            progression:
+app.get("/", (req, res) => {                    // Visar kurser | kurskod, kursnamn, kursplan, kursprogression, ta bort kurs |
+        res.render("index");
+    });
 
-        }
-    ]*/
+
+app.get("/addcourse", (req, res) => {          // Lägg till kurser i formulär | kurskod, kursnamn, kursplan, kursprogression |
     res.render("addcourse")
 });
 
-//app.post("/")
 
-// Beskrivning av sida | syfte, databas, slutsats |
-app.get("/about", (req, res) => {
+app.get("/about", (req, res) => {             // Beskrivning av sida | syfte, databas, slutsats |
     res.render("about") 
 });
 
