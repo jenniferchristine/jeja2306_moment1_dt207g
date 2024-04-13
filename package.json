@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "install": "nodemon install.js",
     "start": "nodemon server.js"
   },
   "author": "",
