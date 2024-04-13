@@ -58,6 +58,8 @@ form {
     align-self: center;
     width: 400px;
     padding: 2em 0 4em 0;
+    
+    input[type="text"] { padding-left: 10px; }
 
     input {
         width: 100%;
