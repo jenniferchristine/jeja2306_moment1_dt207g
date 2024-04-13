@@ -22,8 +22,8 @@ client.query(`
     DROP TABLE IF EXISTS courses;
     CREATE TABLE courses(
         id          SERIAL PRIMARY KEY,
-        coursecode  VARCHAR(50) NOT NULL,
         coursename  VARCHAR(255) NOT NULL,
+        coursecode  VARCHAR(50) NOT NULL,
         syllabus    VARCHAR(255) NOT NULL,
         progression CHAR(1) NOT NULL
     )

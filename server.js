@@ -54,7 +54,7 @@ app.post("/addcourse", async (req, res) => { // hantera post-förfrågningarna
     const syllabus = req.body.syllabus;
     const progression = req.body.progression;
   
-    const result = await client.query("INSERT INTO courses (coursecode, coursename, syllabus, progression) VALUES ($1, $2, $3, $4)", [coursename, coursecode, syllabus, progression], (err) => {
+    const result = await client.query("INSERT INTO courses (coursename, coursecode, syllabus, progression) VALUES ($1, $2, $3, $4)", [coursename, coursecode, syllabus, progression], (err) => {
         if (err) {
             console.log("Fel vid tillägg i db.")
         } else {
