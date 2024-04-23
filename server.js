@@ -61,10 +61,11 @@ app.post("/addcourse", async (req, res) => {
     const syllabus = req.body.syllabus;
     const progression = req.body.progression;
 
-    if (!coursename || !coursecode || !syllabus || !progression) { // validering
+    const validProgression = /^[a-zA-Z]$/; // regex för att matcha en bokstav
+    if (!coursename || !coursecode || !syllabus || !progression || !validProgression.test(progression)){ // validering, test-metod för endast progression
         return res.send(`
             <script>
-                alert('Alla fält måste fyllas i.');
+                alert('Alla fält måste fyllas i och progression kan endast bestå av en enda bokstav');
                 window.history.back(); // gå tillbaka till addcourse-sida
             </script>
         `);
