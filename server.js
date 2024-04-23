@@ -19,36 +19,43 @@ const client = new Client({
 });
 
 client.connect((err) => {
-    if (err) console.log("Fel vid anslutning..." + err);
-    else console.log("Ansluten till databasen...");
+    if (err) {
+        console.error("Could not connect to database" + err);
+        return;
+    } else {
+        console.log("Connected to database...");
+    }
 });
 
 app.get("/", async (req, res) => { // route för att hämta data till index
-    client.query(`SELECT * FROM courses ORDER BY id DESC;`, (err, result) => {
-        if (err) {
-            console.error('Error fetching data from courses table: ', err);
-            return;
-        }
-
+    try {
+        const result = await client.query(`SELECT * FROM courses ORDER BY id DESC;`);
         res.render("index", { courses: result.rows }); // skicka kurserna till vyn för rendering
-    });
+    } catch (error) {
+        console.error('Error fetching data from courses table: ', err);
+        res.status(500).send("Failed to fetch courses from database");
+        return;
+    }
 });
 
 app.get("/delete/:id", async (req, res) => {
     const id = req.params.id;
 
-    const result = await client.query(`
-        DELETE FROM courses WHERE id=$1
-    `, [id]);
-
-    res.redirect("/");
+    try {
+        await client.query(`DELETE FROM courses WHERE id=$1`, [id]);
+        res.redirect("/");
+    } catch (error) {
+        console.error("Error deleting course: ", error);
+        res.status(500).send("Failed to delete course from database");
+        return;
+    }
 });
 
 app.get("/addcourse", (req, res) => { // route för addcourse-sidan
     res.render("addcourse");
 });
 
-app.post("/addcourse", async (req, res) => { 
+app.post("/addcourse", async (req, res) => {
     const coursename = req.body.coursename;
     const coursecode = req.body.coursecode;
     const syllabus = req.body.syllabus;
@@ -63,9 +70,9 @@ app.post("/addcourse", async (req, res) => {
         `);
     }
     try {
-        const result = await client.query("INSERT INTO courses (coursename, coursecode, syllabus, progression) VALUES ($1, $2, $3, $4)", 
+        await client.query("INSERT INTO courses (coursename, coursecode, syllabus, progression) VALUES ($1, $2, $3, $4)",
         [coursename, coursecode, syllabus, progression]);
-        
+
         console.log("Course added");
         res.status(200).redirect("/");
     } catch (error) {
@@ -75,7 +82,7 @@ app.post("/addcourse", async (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-    res.render("about") 
+    res.render("about")
 });
 
 app.listen(process.env.PORT, () => { // starta
