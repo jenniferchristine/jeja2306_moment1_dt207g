@@ -24,7 +24,7 @@ client.connect((err) => {
 });
 
 app.get("/", async (req, res) => { // route för att hämta data till index
-    client.query("SELECT * FROM courses", (err, result) => {
+    client.query(`SELECT * FROM courses ORDER BY id DESC;`, (err, result) => {
         if (err) {
             console.error('Error fetching data from courses table: ', err);
             return;
@@ -48,29 +48,35 @@ app.get("/addcourse", (req, res) => { // route för addcourse-sidan
     res.render("addcourse");
 });
 
-app.post("/addcourse", async (req, res) => { // hantera post-förfrågningarna
+app.post("/addcourse", async (req, res) => { 
     const coursename = req.body.coursename;
     const coursecode = req.body.coursecode;
     const syllabus = req.body.syllabus;
     const progression = req.body.progression;
-  
-    const result = await client.query("INSERT INTO courses (coursename, coursecode, syllabus, progression) VALUES ($1, $2, $3, $4)", 
-    [coursename, coursecode, syllabus, progression], (err) => {
 
-        if (err) {
-            console.log("Could not add course")
-        } else {
-            console.log("Course added");
-            res.redirect("/"); // omdirigera till startsidan     
-        }
-    });
-  });
-
+    if (!coursename || !coursecode || !syllabus || !progression) { // validering
+        return res.send(`
+            <script>
+                alert('Alla fält måste fyllas i.');
+                window.history.back(); // gå tillbaka till addcourse-sida
+            </script>
+        `);
+    }
+    try {
+        const result = await client.query("INSERT INTO courses (coursename, coursecode, syllabus, progression) VALUES ($1, $2, $3, $4)", 
+        [coursename, coursecode, syllabus, progression]);
+        
+        console.log("Course added");
+        res.status(200).redirect("/");
+    } catch (error) {
+        console.error("Could not add course", error);
+        res.status(500).send("Något gick fel när kursen skulle läggas till i databasen.");
+    }
+});
 
 app.get("/about", (req, res) => {
     res.render("about") 
 });
-
 
 app.listen(process.env.PORT, () => { // starta
     console.log("Server started on port: " + process.env.PORT);
