@@ -77,7 +77,7 @@ app.post("/addcourse", async (req, res) => {
         res.status(200).redirect("/");
     } catch (error) {
         console.error("Could not add course", error);
-        res.status(500).send("Något gick fel när kursen skulle läggas till i databasen.");
+        res.status(500).send("Failed to add course");
     }
 });
 
